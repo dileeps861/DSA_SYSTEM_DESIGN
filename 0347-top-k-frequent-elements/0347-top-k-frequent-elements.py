@@ -6,11 +6,8 @@ class Solution:
 
         res = []
         for key, val in count.items():
-            res.append((val, key))
-        res.sort()
-
-        result = []
-        while k:
-            result.append(res.pop()[1])
-            k -= 1
-        return result
+            heappush(res,(val, key))
+            if len(res) > k:
+                heappop(res)
+        
+        return map(lambda x: x[1], res)
