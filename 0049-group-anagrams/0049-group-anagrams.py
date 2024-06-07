@@ -5,7 +5,7 @@ class Solution:
             count = [0] * 26
             for char in word:
                 count[ord(char) - ord('a')] += 1
-            countSter = "-".join(map(str, count))
+            countSter = tuple(count)
             
             if countSter not in res:
                 res[countSter] = []
