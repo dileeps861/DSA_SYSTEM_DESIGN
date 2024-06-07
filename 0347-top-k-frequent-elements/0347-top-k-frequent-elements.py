@@ -12,6 +12,6 @@ class Solution:
         
         result = []
         while k:
-            result.append(res.remove(-1)[1])
+            result.append(res.pop()[1])
             k -= 1
         return result
