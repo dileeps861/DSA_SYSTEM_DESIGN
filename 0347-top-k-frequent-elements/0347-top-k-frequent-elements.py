@@ -10,4 +10,4 @@ class Solution:
             if len(res) > k:
                 heappop(res)
         
-        return [val for c, val in res]
+        return map(lambda x: x[1], res)
