@@ -8,8 +8,5 @@ class Solution:
             countSter = tuple(count)
             
             res[countSter].append(word)
-        finalRes = []
-        for key, value in res.items():
-            finalRes.append(value)
 
-        return finalRes
+        return res.values()
