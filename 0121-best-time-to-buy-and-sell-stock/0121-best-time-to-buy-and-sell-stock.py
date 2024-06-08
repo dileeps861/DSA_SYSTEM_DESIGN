@@ -4,9 +4,10 @@ class Solution:
         sell = prices[0]
         res = 0
         for price in prices:
-            buy = min(buy, price)
-            if buy == price:
+            if buy > price:
+                buy = price
                 sell = buy
+            
             sell = max(sell, price)
             res = max(sell - buy, res)
 
