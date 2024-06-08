@@ -11,6 +11,5 @@ class Solution:
                 s2Map[s2[i]] -= 1
                 i += 1
             if (j - i + 1) == len(s1):
-                # print(s2Map, i, j)
                 return True
         return False
