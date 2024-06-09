@@ -20,8 +20,7 @@ class Solution:
                 b = stack.pop(-1)
                 a = stack.pop(-1)
                 res = calculate(a, b, token)
-                print(a,token, b,"=", res)
                 stack.append(res)
-        print(stack)
+
         return stack[-1]
 
