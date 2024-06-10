@@ -10,7 +10,11 @@ class Solution:
 
         while minSpeed <= maxSpeed:
             midSpeed = minSpeed + (maxSpeed - minSpeed) // 2
-            hoursNeeded = sum([ceil(pile/midSpeed) for pile in piles])
+            hoursNeeded = 0
+            for pile in piles:
+                hoursNeeded += (
+                    pile // midSpeed if pile % midSpeed == 0 else (pile // midSpeed) + 1
+                )
 
             if hoursNeeded <= h:
                 maxSpeed = midSpeed - 1
