@@ -7,7 +7,7 @@ class Solution:
                 res = abs(idx)
                 break
             nums[idx] =  -nums[idx]
-        for i in range(len(nums))
+        for i in range(len(nums)):
             nums[i] = abs(nums[i])
         return res
 
