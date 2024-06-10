@@ -5,15 +5,6 @@
 #         self.next = next
 class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
-       
-
-        # when fast is none we know where the slow next needs to be removed
-
-        if n == 0:
-            return head
-        if n == 1 and not head.next:
-            return None
-        
         # fast and slow pointers
         # give an heads up of n+1 to fast pointer
         fast = head
