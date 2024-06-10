@@ -4,7 +4,7 @@ class Solution:
         n = len(matrix[0])
 
         i = 0
-        j = m -1
+        j = m - 1
 
         while i <= j:
             k = 0
@@ -13,7 +13,6 @@ class Solution:
             leftVal = matrix[mid][k]
             rightVal = matrix[mid][l]
             if leftVal <= target and rightVal >= target:
-
                 while k <= l:
                     midInner = k + (l - k) // 2
                     val = matrix[mid][midInner]
