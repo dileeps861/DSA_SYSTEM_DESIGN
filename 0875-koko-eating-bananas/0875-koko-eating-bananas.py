@@ -2,7 +2,6 @@ class Solution:
     def minEatingSpeed(self, piles: List[int], h: int) -> int:
         maxSpeed = max(piles)
         minSpeed = 1
-
         while minSpeed <= maxSpeed:
             midSpeed = minSpeed + (maxSpeed - minSpeed) // 2
             hoursNeeded = 0
