@@ -23,6 +23,8 @@ class TimeMap:
 
     def get(self, key: str, timestamp: int) -> str:
         timestamps = self.timemap[key]
+        if not timestamps:
+            return ""
         return self.binarysearch(timestamps, 0, len(timestamps) - 1, timestamp)
 
 
