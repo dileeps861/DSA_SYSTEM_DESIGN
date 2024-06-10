@@ -10,8 +10,6 @@ class Solution:
             if midVal == target:
                 return mid
             if midVal >= nums[low] and midVal >= nums[mid - 1]:
-                # print(nums)
-                # print(mid, midVal, target,low, high)
                 if mid - 1 >= 0 and target <= nums[mid - 1] and target >= nums[low]:
                     high = mid - 1
                 else:
