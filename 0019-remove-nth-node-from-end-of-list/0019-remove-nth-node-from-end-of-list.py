@@ -8,14 +8,15 @@ class Solution:
         # fast and slow pointers
         # give an heads up of n+1 to fast pointer
         fast = head
+        slow = head
         count = 0
-        while fast and count <= n:
+        while fast and count < n:
             fast = fast.next
             count += 1
-        slow = head
-        if not fast and count <= n:
+        if not fast:
             return head.next
-        while fast:
+        
+        while fast and fast.next:
             slow = slow.next
             fast = fast.next
         slow.next = slow.next.next
