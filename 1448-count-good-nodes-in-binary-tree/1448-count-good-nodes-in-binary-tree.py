@@ -15,7 +15,7 @@ class Solution:
         
             if root.val >= mx:
                 res[0] += 1
-            mx = max(mx, root.val)
+                mx = root.val
             dfs(root.left, mx)
             dfs(root.right, mx)
         dfs(root, root.val)
