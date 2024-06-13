@@ -12,7 +12,7 @@ class Solution:
         def dfs(root, mx):
             if not root:
                 return
-            
+        
             if root.val >= mx:
                 res[0] += 1
             mx = max(mx, root.val)
