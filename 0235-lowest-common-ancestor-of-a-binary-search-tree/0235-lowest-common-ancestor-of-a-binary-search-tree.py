@@ -11,10 +11,11 @@ class Solution:
             return root
         if q.val < p.val:
             return self.lowestCommonAncestor(root, q, p)
-        
-        if root.val <= q.val and p.val <= root.val:
-            return root
-        elif root.val <= q.val and root.val <= p.val:
-            return self.lowestCommonAncestor(root.right, q, p)
-        else:
-            return self.lowestCommonAncestor(root.left, q, p)
+        while root:
+            if root.val <= q.val and p.val <= root.val:
+                return root
+            elif root.val <= q.val and root.val <= p.val:
+                root = root.right
+            else:
+                root = root.left
+        return root
