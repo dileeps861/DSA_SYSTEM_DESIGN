@@ -15,12 +15,13 @@ class Solution:
         while q:
             sz = len(q)
             inr = []
-            for _ in range(sz):
+            while sz:
                 popped = q.popleft()  # Use popleft() for O(1) time complexity
                 inr.append(popped.val)
                 if popped.left:
                     q.append(popped.left)
                 if popped.right:
                     q.append(popped.right)
+                sz -= 1
             res.append(inr)
         return res
