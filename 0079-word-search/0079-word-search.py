@@ -7,29 +7,27 @@ class Solution:
         ans = [False]
         dirs = [[0, 1], [0, -1], [1, 0], [-1, 0]]
 
-        def dfs(i, j, soFar):
-            if soFar == word:
+        def dfs(i, j, idx):
+            if idx == len(word):
                 ans[0] = True
                 return
-            if len(soFar) >= len(word):
-                return  # Stop if the current path is longer than the word
-
+        
             for u,v in dirs:
                 k,l = i + u, j + v
-                if k >= 0 and k < n and l >= 0 and l < m and board[k][l] != '*':
+                if k >= 0 and k < n and l >= 0 and l < m and board[k][l] == word[idx]:
                     char = board[k][l]
                     board[k][l] = "*"
-                    dfs(k,l, soFar + char)
+                    dfs(k,l, idx + 1)
                     board[k][l] = char
                     if ans[0]:  # Stop further recursion if word is found
                         return
         for i in range(n):
             for j in range(m):
-                if board[i][j] == "*":
+                if board[i][j] != word[0]:
                     continue
                 char = board[i][j]
                 board[i][j] = "*"
-                dfs(i,j, char)
+                dfs(i,j, 1)
                 board[i][j] = char
                 if ans[0]:
                     return True
