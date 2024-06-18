@@ -3,10 +3,11 @@ class Node:
         self.val = val
         self.childern = {}
         self.isWord = False
-        
+
+
 class Trie:
     def __init__(self):
-        self.root = Node('*')
+        self.root = Node("*")
 
     def insert(self, word: str) -> None:
         i = 0
@@ -18,7 +19,6 @@ class Trie:
             node = node.childern[char]
             i += 1
         node.isWord = True
-
 
     def search(self, word: str) -> bool:
         i = 0
