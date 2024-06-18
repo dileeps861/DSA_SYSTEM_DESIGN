@@ -1,18 +1,17 @@
 class Node:
-    def __init__(self, val):
-        self.val = val
+    def __init__(self):
         self.children = {}
         self.isWord = False
 
 class Trie:
     def __init__(self):
-        self.root = Node("*")
+        self.root = Node()
 
     def insert(self, word: str) -> None:
         node = self.root
         for char in word:
             if char not in node.children:
-                node.children[char] = Node(char)
+                node.children[char] = Node()
             node = node.children[char]
         node.isWord = True
 
