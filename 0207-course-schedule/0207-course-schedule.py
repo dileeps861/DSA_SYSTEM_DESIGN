@@ -2,13 +2,14 @@ class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         adj = defaultdict(set)
 
-        for u,v in prerequisites:
+        for u, v in prerequisites:
             adj[v].add(u)
-        
+
         visited = dict()
         ans = [True]
+
         def dfs(u):
-        
+
             if u in visited:
                 if visited[u] == 1:
                     ans[0] = False
@@ -19,7 +20,7 @@ class Solution:
                     dfs(v)
 
             visited[u] = 2
-            
+
         for u in range(numCourses):
             if u not in visited:
                 dfs(u)
