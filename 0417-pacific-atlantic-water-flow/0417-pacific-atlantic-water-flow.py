@@ -34,4 +34,4 @@ class Solution:
         reachable_pacific = bfs(pacific)
         reachable_atlantic = bfs(atlantic)
 
-        return list(reachable_pacific.intersection(reachable_atlantic))
+        return reachable_pacific.intersection(reachable_atlantic)
