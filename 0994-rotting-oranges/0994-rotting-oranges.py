@@ -10,9 +10,10 @@ class Solution:
                     count_fresh += 1
         dirs = [[0, 1], [0, -1], [-1, 0], [1, 0]]
         res = -1
+        if count_fresh == 0:
+            return 0
         while q:
             sz = len(q)
-            print(q)
             while sz > 0:
                 i, j = q.popleft()
                 for u, v in dirs:
