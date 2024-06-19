@@ -1,43 +1,37 @@
+from collections import deque
+from typing import List
+
 class Solution:
     def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
-        qP = deque()
-        qA = deque()
-
-        m = len(heights)
-        if m == 0 or len(heights[0]) == 0:
+        if not heights:
             return []
-        n = len(heights[0])
-        for i in range(n):
-            qP.append((0, i))
-            qA.append((m - 1, i))
-        for j in range(m):
-            qP.append((j, 0))
-            qA.append((j, n - 1))
 
-        dirs = [[0, 1], [0, -1], [1, 0], [-1, 0]]
-
-        def movable(i, j):
-            if i < 0 or i >= m or j < 0 or j >= n:
-                return False
-            return True
-
-        def bfs(q):
+        m, n = len(heights), len(heights[0])
+        
+        pacific = deque()
+        atlantic = deque()
+        
+        for i in range(m):
+            pacific.append((i, 0))
+            atlantic.append((i, n - 1))
+        for j in range(n):
+            pacific.append((0, j))
+            atlantic.append((m - 1, j))
+        
+        directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+        
+        def bfs(queue):
             reachable = set()
-
-            while q:
-                i, j = q.popleft()
-                reachable.add((i, j))
-                for u, v in dirs:
-                    k, l = i + u, j + v
-                    if not movable(k, l):
-                        continue
-                    if (k, l) in reachable:
-                        continue
-                    if heights[k][l] >= heights[i][j]:
-                        q.append((k, l))
+            while queue:
+                x, y = queue.popleft()
+                reachable.add((x, y))
+                for dx, dy in directions:
+                    nx, ny = x + dx, y + dy
+                    if 0 <= nx < m and 0 <= ny < n and (nx, ny) not in reachable and heights[nx][ny] >= heights[x][y]:
+                        queue.append((nx, ny))
             return reachable
 
-        reachableP = bfs(qP)
-        reachableA = bfs(qA)
+        reachable_pacific = bfs(pacific)
+        reachable_atlantic = bfs(atlantic)
 
-        return reachableA.intersection(reachableP)
+        return list(reachable_pacific.intersection(reachable_atlantic))
