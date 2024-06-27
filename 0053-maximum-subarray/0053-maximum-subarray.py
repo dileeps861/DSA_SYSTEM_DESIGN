@@ -11,8 +11,7 @@ class Solution:
         #         res = max(res, currSum)
 
         #  Optimal solution, start left=right = 0
-        # keep moving forward and if the total sum becomes less upon adding new element we move 
-        # left pointer to right and total sum = nums[right]
+        # keep moving forward and if the total sum becomes less than nums[right] upon adding new element and reset total sum = nums[right] otherwise add nums to totalSum
         right = 0
         totalSum = 0
         while right < n:
