@@ -29,8 +29,6 @@ class Solution:
                 # Another approach, expand around center:
         if not s or len(s) == 0:
             return ""
-        
-        start, end = 0, 0
         res = 0
         for i in range(len(s)):
             res += self.expandAroundCenter(s, i, i)  # Odd length palindromes
