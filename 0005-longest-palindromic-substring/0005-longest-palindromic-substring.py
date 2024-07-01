@@ -18,14 +18,13 @@ class Solution:
                 dp[i][i+1] = True
                 res = [i,i+1]
 
-        
         for x in range(3,n+1):
-            for j in range(x,n):
-                i = j - x
+            for j in range(x-1,n):
+                i = j - x + 1
                 k = i + 1
-                l = j - 2
+                l = j - 1
                 # When the x is of size 2 which means j-1 and i+1 will be equals
-                if dp[k][l] and s[i] == s[j-1]:
+                if dp[k][l] and s[i] == s[j]:
                     dp[i][j] = True
-                    res = [i,j-1]
+                    res = [i,j]
         return s[res[0]:res[1]+1]
