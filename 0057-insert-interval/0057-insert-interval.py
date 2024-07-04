@@ -4,8 +4,23 @@ class Solution:
         if not intervals:
             return [newInterval]
 
+        def findBisectPoint():
+            left = 0
+            right = len(intervals) - 1
+
+            while left <= right:
+                mid = left + (right - left) // 2
+                if intervals[mid][0] == newInterval[0]:
+                    return mid
+                if intervals[mid][0] > newInterval[0]:
+                    right = mid - 1
+                else:
+                    left = mid + 1
+
+            return left    
+        
         # Find the correct position to insert newInterval using binary search
-        pos = bisect.bisect_left([i[0] for i in intervals], newInterval[0])
+        pos = findBisectPoint()
 
         # Insert the newInterval at the found position
         intervals.insert(pos, newInterval)
