@@ -20,15 +20,23 @@ class Solution:
         # Find the correct position to insert newInterval using binary search
         pos = findBisectPoint()
 
-        # Insert the newInterval at the found position
-        intervals.insert(pos, newInterval)
-
         # Merge the intervals
-        merged = [intervals[0]]
-        for i in range(1, len(intervals)):
-            if intervals[i][0] <= merged[-1][1]:  # Overlapping intervals
-                merged[-1][1] = max(merged[-1][1], intervals[i][1])
-            else:
+        merged = []
+        # Add all intervals before the insertion point
+        for i in range(pos):
+            merged.append(intervals[i])
+        
+        # Add and merge the new interval
+        if not merged or merged[-1][1] < newInterval[0]:
+            merged.append(newInterval)
+        else:
+            merged[-1][1] = max(merged[-1][1], newInterval[1])
+        
+        # Merge remaining intervals
+        for i in range(pos, len(intervals)):
+            if merged[-1][1] < intervals[i][0]:
                 merged.append(intervals[i])
+            else:
+                merged[-1][1] = max(merged[-1][1], intervals[i][1])
 
         return merged
