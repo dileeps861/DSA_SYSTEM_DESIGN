@@ -10,7 +10,7 @@ class Solution:
 
             while left <= right:
                 mid = left + (right - left) // 2
-                if intervals[mid][0] > newInterval[0]:
+                if intervals[mid][0] >= newInterval[0]:
                     right = mid - 1
                 else:
                     left = mid + 1
