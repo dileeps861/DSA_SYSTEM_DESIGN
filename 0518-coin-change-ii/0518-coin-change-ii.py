@@ -4,7 +4,7 @@ class Solution:
         
         # Initialize the memoization table with None
         dp = [[None] * (amount + 1) for _ in range(n)]
-        
+        coins.sort()
         def countWays(i, remaining):
             # Base cases
             if remaining == 0:
