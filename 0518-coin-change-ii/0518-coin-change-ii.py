@@ -15,7 +15,9 @@ class Solution:
             # If already computed, return the stored value
             if dp[i][remaining] is not None:
                 return dp[i][remaining]
-            
+            if remaining < coins[i]:
+                dp[i][remaining] = 0
+                return 0
             # Recursive cases: include coins[i] or skip it
             include = countWays(i, remaining - coins[i])
             exclude = countWays(i + 1, remaining)
