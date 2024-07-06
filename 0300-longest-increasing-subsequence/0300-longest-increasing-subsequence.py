@@ -26,4 +26,3 @@ class Solution:
             else:
                 lisList[idx] = num
         return len(lisList)
-
