@@ -4,6 +4,7 @@ class StockPrice:
     def __init__(self):
         self.stockPrices = SortedDict()  # Stores prices by timestamp.
         self.sortedPrice = SortedDict()  # Stores frequency of each price.
+        self.latestTime = 0
 
     def update(self, timestamp: int, price: int) -> None:
         if timestamp in self.stockPrices:
@@ -20,6 +21,8 @@ class StockPrice:
             self.sortedPrice[price] += 1
         else:
             self.sortedPrice[price] = 1
+        if self.latestTime < timestamp:
+            self.latestTime = timestamp
 
     def current(self) -> int:
         # Return the most recent price. peekitem(-1) returns (key, value).
