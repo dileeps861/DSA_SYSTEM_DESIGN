@@ -2,7 +2,7 @@ from sortedcontainers import SortedDict
 
 class StockPrice:
     def __init__(self):
-        self.stockPrices = SortedDict()  # Stores prices by timestamp.
+        self.stockPrices = self.stockPrices = dict()  # Stores prices by timestamp.
         self.sortedPrice = SortedDict()  # Stores frequency of each price.
         self.latestTime = 0
 
