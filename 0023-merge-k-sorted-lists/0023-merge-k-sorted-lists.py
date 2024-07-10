@@ -9,7 +9,7 @@ class Solution:
         prev = head
         pq = []
         count = 0
-        for ls in lists:
+        for index, ls in enumerate(lists):
             if ls:
                 tup = (ls.val, count, ls)
                 count += 1
