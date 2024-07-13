@@ -8,9 +8,11 @@ class Solution:
         st = set(nums)
         if len(st) <= 1:
             return len(st)
+
         node = head
         res = 1
-        prev = None
+        prev = False
+
         while node:
             if not st:
                 break
@@ -22,4 +24,5 @@ class Solution:
                 prev = node
                 st.remove(node.val)
             node = node.next
+
         return res
