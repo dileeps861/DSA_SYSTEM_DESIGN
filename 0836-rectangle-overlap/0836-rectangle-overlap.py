@@ -1,5 +1,6 @@
 class Solution:
     def isRectangleOverlap(self, rec1: List[int], rec2: List[int]) -> bool:
+        # First sq range
         x1, x2 = rec1[0], rec1[2]
         y1, y2 = rec1[1], rec1[3]
 
