@@ -7,6 +7,7 @@ class Solution:
                 self.id = [i for i in range(n)]
                 self.degree = [1] * n
                 self.n = n
+                self.disjointsetCount = n
 
             def connect(self, u, v):
                 idxU = self.find(u)
@@ -14,6 +15,7 @@ class Solution:
                 if idxU == idxV:
                     return False
 
+                self.disjointsetCount -= 1
                 if self.degree[idxU] > self.degree[idxV]:
                     self.id[idxV] = idxU
                 elif self.degree[idxU] < self.degree[idxV]:
@@ -29,17 +31,12 @@ class Solution:
                 return self.id[u]
 
             def findNoCon(self):
-                dis = set()
-                for i in range(self.n):
-                    idx = self.find(i)
-                    dis.add(idx)
-                return len(dis)
+                return self.disjointsetCount
 
         uf = UF(n)
         dis_set_ct = n
         for ts, a, b in logs:
-            if uf.connect(a, b):
-                dis_set_ct -= 1
-            if dis_set_ct == 1:
+            uf.connect(a, b)
+            if uf.findNoCon() == 1:
                 return ts
         return -1
