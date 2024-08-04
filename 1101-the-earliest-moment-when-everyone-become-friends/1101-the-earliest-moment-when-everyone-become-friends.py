@@ -34,7 +34,6 @@ class Solution:
                 return self.disjointsetCount
 
         uf = UF(n)
-
         for ts, a, b in logs:
             uf.connect(a, b)
             if uf.findNoCon() == 1:
