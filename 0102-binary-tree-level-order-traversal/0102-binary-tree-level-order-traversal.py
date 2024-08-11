@@ -8,20 +8,20 @@ class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> List[List[int]]:
         if not root:
             return []
-
-        q = deque([root])
+        q = deque()
+        q.append(root)
         res = []
-
         while q:
-            sz = len(q)
-            inr = []
-            while sz:
-                popped = q.popleft()  # Use popleft() for O(1) time complexity
-                inr.append(popped.val)
-                if popped.left:
-                    q.append(popped.left)
-                if popped.right:
-                    q.append(popped.right)
-                sz -= 1
-            res.append(inr)
+            size = len(q)
+            ls = []
+            while size:
+                node = q.popleft()
+                ls.append(node.val)
+                if node.left:
+                    q.append(node.left)
+                if node.right:
+                    q.append(node.right)
+                size -= 1
+            if ls:
+                res.append(ls)
         return res
