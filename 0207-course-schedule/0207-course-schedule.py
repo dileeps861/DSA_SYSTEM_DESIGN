@@ -1,29 +1,39 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        adj = defaultdict(set)
 
-        for u, v in prerequisites:
-            adj[v].add(u)
+        def buildGraph():
+            adj = defaultdict(set)
+            for a, b in prerequisites:
+                adj[b].add(a)
+            return adj
 
-        visited = dict()
-        ans = [True]
+        adj = buildGraph()
+        visited = defaultdict(int)
+        res = [True]
 
-        def dfs(u):
+        def dfs(node):
+            stack = []
+            stack.append(node)
+            while stack:
+                nodePoped = stack[-1]
+                if visited[nodePoped] == 0:  # If unvisited, start processing
+                    visited[nodePoped] = 2  # Mark as visiting
+                flag = True
+                for nT in adj[nodePoped]:
+                    if visited[nT] == 2:
+                        res[0] = False
+                        return
 
-            if u in visited:
-                if visited[u] == 1:
-                    ans[0] = False
-                return
-            visited[u] = 1
-            for v in adj[u]:
-                if v not in visited or visited[v] == 1:
-                    dfs(v)
+                    if visited[nT] == 0:
+                        flag = False
+                        stack.append(nT)
+                        
+                if flag:
+                    stack.pop(-1)
+                    visited[nodePoped] = 3
 
-            visited[u] = 2
-
-        for u in range(numCourses):
-            if u not in visited:
-                dfs(u)
-            if not ans[0]:
-                break
-        return ans[0]
+        for n in range(numCourses):
+            if not res[0]:
+                return False
+            dfs(n)
+        return res[0]
