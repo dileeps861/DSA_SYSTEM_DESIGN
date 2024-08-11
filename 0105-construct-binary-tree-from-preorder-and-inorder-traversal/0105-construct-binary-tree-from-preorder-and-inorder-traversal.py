@@ -6,24 +6,21 @@
 #         self.right = right
 class Solution:
     def buildTree(self, preorder: List[int], inorder: List[int]) -> Optional[TreeNode]:
-        # low high, global preI
-        # First make left sub tree before moving right
-        globalI = [0]
-        
-        # Create a hash map for inorder traversal
-        inorder_map = {val: idx for idx, val in enumerate(inorder)}
-        
-        def findIdx(num, low, high):
-            return inorder_map[num]
-                    
-        def construct(low, high):
+        dictInorder = {}
+        for idx, val in enumerate(inorder):
+            dictInorder[val] = idx
+        i = [0]
+
+        def buildRoot(low, high):
             if low > high:
                 return None
-            num = preorder[globalI[0]]
-            idx = findIdx(preorder[globalI[0]], low, high)
-            node = TreeNode(num)
-            globalI[0] += 1
-            node.left = construct(low, idx - 1)
-            node.right = construct(idx + 1, high)
+
+            val = preorder[i[0]]
+            mid = dictInorder[val]
+            node = TreeNode(val)
+            i[0] += 1
+            node.left = buildRoot(low, mid - 1)
+            node.right = buildRoot(mid + 1, high)
             return node
-        return construct(0, len(inorder) - 1)
+
+        return buildRoot(0, len(inorder) - 1)
