@@ -12,7 +12,7 @@ class Solution:
 
         def bisectRight(low, high):
             while low <= high:
-                mid = low + (high - low + 1) // 2  # This ensures that mid is always rounded up, which is necessary for the right bound search.
+                mid = low + (high - low) // 2  # This ensures that mid is always rounded up, which is necessary for the right bound search.
                 if nums[mid] <= target:
                     low = mid + 1  # Needed for convergence
                 else:
