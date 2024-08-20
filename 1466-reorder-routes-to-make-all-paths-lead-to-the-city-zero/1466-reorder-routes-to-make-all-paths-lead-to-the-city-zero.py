@@ -7,12 +7,12 @@ class Solution:
         def buildGraph(connections):
             for u, v in connections:
                 if u not in g:
-                    g[u] = set()
+                    g[u] = list()
 
                 if v not in g_in:
-                    g_in[v] = set()
-                g[u].add(v)
-                g_in[v].add(u)
+                    g_in[v] = list()
+                g[u].append(v)
+                g_in[v].append(u)
 
         buildGraph(connections)
         changes = [0]
