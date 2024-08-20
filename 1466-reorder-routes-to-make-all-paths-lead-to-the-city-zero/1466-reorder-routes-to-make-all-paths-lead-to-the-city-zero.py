@@ -1,30 +1,33 @@
 class Solution:
     def minReorder(self, n: int, connections: List[List[int]]) -> int:
 
-        # Create graph and reversed graph
-        g = defaultdict(list)
-        g_rev = defaultdict(list)
+        g = dict()
+        g_in = dict()
 
-        for u, v in connections:
-            g[u].append(v)
-            g_rev[v].append(u)
+        def buildGraph(connections):
+            for u, v in connections:
+                if u not in g:
+                    g[u] = set()
+
+                if v not in g_in:
+                    g_in[v] = set()
+                g[u].add(v)
+                g_in[v].add(u)
+
+        buildGraph(connections)
+        changes = [0]
 
         def dfs(u, visited):
-            changes = 0
             visited.add(u)
+            if u in g_in:
+                for v in g_in[u]:
+                    if v not in visited:
+                        dfs(v, visited)
+            if u in g:
+                for v in g[u]:
+                    if v not in visited:
+                        changes[0] += 1
+                        dfs(v, visited)
 
-            # Check the reverse edges (these are the correct direction)
-            for v in g_rev[u]:
-                if v not in visited:
-                    changes += dfs(v, visited)
-
-            # Check the actual directed edges (we might need to reverse them)
-            for v in g[u]:
-                if v not in visited:
-                    changes += 1 + dfs(v, visited)
-
-            return changes
-
-        # Start DFS from node 0
-        visited = set()
-        return dfs(0, visited)
+        dfs(0, set())
+        return changes[0]
