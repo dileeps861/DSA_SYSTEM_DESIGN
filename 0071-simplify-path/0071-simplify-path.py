@@ -7,9 +7,7 @@ class Solution:
         while i < len(pathSpl):
             pt = pathSpl[i]
             i += 1
-            if not pt:
-                continue
-            elif '.' == pt:
+            if not pt or pt == '.':
                 continue
             elif pt == '..':
                 if res:
