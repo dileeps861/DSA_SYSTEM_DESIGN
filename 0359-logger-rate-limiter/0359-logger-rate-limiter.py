@@ -4,9 +4,8 @@ class Logger:
         self.messageCache = {}
 
     def shouldPrintMessage(self, timestamp: int, message: str) -> bool:
-        if message in self.messageCache:
-            if self.messageCache[message] > timestamp - 10:
-                return False
+        if message in self.messageCache and self.messageCache[message] > timestamp - 10:
+            return False
         self.messageCache[message] = timestamp
 
         return True
