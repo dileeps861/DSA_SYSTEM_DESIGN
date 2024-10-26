@@ -1,7 +1,7 @@
 class Logger:
 
     def __init__(self):
-        self.messageCache = dict()
+        self.messageCache = {}
 
     def shouldPrintMessage(self, timestamp: int, message: str) -> bool:
         if message in self.messageCache:
