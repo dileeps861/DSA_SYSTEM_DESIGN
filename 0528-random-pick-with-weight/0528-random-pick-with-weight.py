@@ -1,15 +1,15 @@
 class Solution:
     def __init__(self, w: List[int]):
         self.total = sum(w)
-        self.prefix_sum = []
+        self.w = w
         self.problity = 0
-        for wg in w:
+        for i, wg in enumerate(w):
             self.problity += wg / self.total
-            self.prefix_sum.append(self.problity)
+            self.w[i] = self.problity
 
     def pickIndex(self) -> int:
         rnd = random.random()
-        idx = bisect.bisect_right(self.prefix_sum, rnd)
+        idx = bisect.bisect_right(self.w, rnd)
         return idx
 
 
