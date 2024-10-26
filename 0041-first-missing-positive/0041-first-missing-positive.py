@@ -3,7 +3,11 @@ class Solution:
         i = 0
         while i < len(nums):
             # Check if the current number is in the range and not in the correct position
-            if 1 <= nums[i] <= len(nums) and nums[nums[i] - 1] != nums[i]:
+            if (
+                1 <= nums[i] <= len(nums)
+                and nums[i] != (i + 1)
+                and nums[nums[i] - 1] != nums[i]
+            ):
                 # Swap nums[i] with the correct index position nums[nums[i] - 1]
                 nums[nums[i] - 1], nums[i] = nums[i], nums[nums[i] - 1]
             else:
