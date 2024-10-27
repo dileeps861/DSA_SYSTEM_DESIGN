@@ -5,12 +5,12 @@ class Solution:
         i = len(temperatures) - 1
         ms = []
         while i >= 0:
-            while ms and ms[-1][0] <= temperatures[i]:
-                ms.pop(-1)
+            while ms and temperatures[ms[-1]] <= temperatures[i]:
+                ms.pop()
             if ms:
-                temp, idx = ms[-1]
+                idx = ms[-1]
                 res[i] = idx - i
-            ms.append((temperatures[i], i))
+            ms.append(i)
             i -= 1
 
         return res
