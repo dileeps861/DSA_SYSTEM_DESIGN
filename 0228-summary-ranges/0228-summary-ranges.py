@@ -4,19 +4,20 @@ class Solution:
             return []
         left = 0
         right = 0
+
+        def makeDes():
+            if left != right:
+                res.append(str(nums[left]) + "->" + str(nums[right]))
+            else:
+                res.append(str(nums[left]))
+
         res = []
         for i in range(1, len(nums)):
             if nums[i] == nums[right] + 1:
                 right = i
             else:
-                if left != right:
-                    res.append(str(nums[left]) + "->" + str(nums[right]))
-                else:
-                    res.append(str(nums[left]))
+                makeDes()
                 left = i
                 right = i
-        if left != right:
-            res.append(str(nums[left]) + "->" + str(nums[right]))
-        else:
-            res.append(str(nums[left]))
+        makeDes()
         return res
