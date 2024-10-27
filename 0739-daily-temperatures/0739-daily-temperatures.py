@@ -1,16 +1,16 @@
 class Solution:
     def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
-        # use monotonically decreasing stack 
+        # add num and idx
         res = [0] * len(temperatures)
-        stack = []
-        for i in range(len(temperatures) - 1, -1, -1):
-            temp = temperatures[i]
+        i = len(temperatures) - 1
+        ms = []
+        while i >= 0:
+            while ms and ms[-1][0] <= temperatures[i]:
+                ms.pop(-1)
+            if ms:
+                temp, idx = ms[-1]
+                res[i] = idx - i
+            ms.append((temperatures[i], i))
+            i -= 1
 
-            while stack and temperatures[stack[-1]] <= temp:
-                stack.pop(-1)
-            
-            if stack:
-                res[i] = stack[-1] - i
-            stack.append(i)
-        return res 
-            
+        return res
