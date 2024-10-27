@@ -1,31 +1,35 @@
 class TimeMap:
 
     def __init__(self):
-        self.timemap = defaultdict(list)
-
+        self.cache = defaultdict(list)
 
     def set(self, key: str, value: str, timestamp: int) -> None:
-        self.timemap[key].append((timestamp, value))
-        
-    def binarysearch(self, timestamps, low, high, timestamp) -> str:
+        self.cache[key].append((timestamp, value))
 
-        while low <= high:
+    def findValue(self, timestamps, timestamp):
+        if len(timestamps) == 0:
+            return ""
+        low = 0
+        high = len(timestamps) - 1
+        while low < high:
             mid = low + (high - low) // 2
-            if timestamps[mid][0] == timestamp:
-                return timestamps[mid][1]
-            if timestamps[mid][0] > timestamp:
-                high = mid - 1
-            else:
+            # print(low, mid, high)
+            midTS, midVal = timestamps[mid]
+            if midTS == timestamp:
+                return midVal
+            if midTS < timestamp:
                 low = mid + 1
-       
-        return timestamps[high][1] if timestamps[high][0] <= timestamp else ""
+            else:
+                high = mid
+        return timestamps[low][1]
 
 
     def get(self, key: str, timestamp: int) -> str:
-        timestamps = self.timemap[key]
-        if not timestamps:
+        if key not in self.cache:
             return ""
-        return self.binarysearch(timestamps, 0, len(timestamps) - 1, timestamp)
+        timestamps = self.cache[key]
+        return self.findValue(timestamps, timestamp)
+
 
 
 # Your TimeMap object will be instantiated and called as such:
