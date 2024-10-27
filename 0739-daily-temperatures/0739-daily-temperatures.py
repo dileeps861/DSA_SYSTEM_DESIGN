@@ -9,8 +9,7 @@ class Solution:
             while ms and temperatures[ms[-1]] <= temperatures[i]:
                 ms.pop()
             if ms:
-                idx = ms[-1]
-                res[i] = idx - i
+                res[i] = ms[-1] - i
             ms.append(i)
 
         return res
