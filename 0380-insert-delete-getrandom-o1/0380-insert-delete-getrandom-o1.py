@@ -15,7 +15,7 @@ class RandomizedSet:
         if val not in self.st:
             return False
 
-        lastVal = self.rndNum[len(self.rndNum) - 1]
+        lastVal = self.rndNum[-1]
         rmNumIdx = self.st[val]
         self.rndNum[rmNumIdx] = lastVal
         self.st[lastVal] = rmNumIdx
