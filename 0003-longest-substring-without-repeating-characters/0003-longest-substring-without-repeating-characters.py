@@ -1,12 +1,13 @@
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        chars = [-1] * 256
+        dictC = {}
+        prev = 0
         res = 0
-        i = 0
-        for j in range(len(s)):
-            char_ord = ord(s[j])
-            if chars[char_ord] != -1:
-                i = max(chars[char_ord] + 1, i)
-            chars[char_ord] = j
-            res = max(res, j - i + 1)
+        for i, char in enumerate(s):
+            if char in dictC and dictC[char] >= prev:
+                res = max(res, i - prev)
+                prev = dictC[char] + 1
+            dictC[char] = i
+            res = max(res, i - prev + 1)
+        
         return res
