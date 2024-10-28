@@ -3,4 +3,4 @@ class Solution:
         cMap = Counter(words)
         cMapSorted = sorted(cMap.items(), key=lambda x: (-x[1], x[0]))
 
-        return [cMapSorted[i][0] for i in range(k)]
+        return [word for word, _ in cMapSorted[:k]]
