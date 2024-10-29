@@ -7,6 +7,7 @@ class Solution:
 
         for col in range(1, cols):
             dpcp = [0] * rows
+            found = 0
             for row in range(rows):
                 for dr, dc in dirs:
                     u, v = row + dr, col + dc
@@ -15,7 +16,10 @@ class Solution:
                             continue
                         dpcp[row] = max(dpcp[row], dp[u] + 1)
                 res = max(res, dpcp[row])
-            
+                if dpcp[row] > 0:
+                    found += 1
+            if found == 0:
+                break
             dp = dpcp
             # print(dp)
 
