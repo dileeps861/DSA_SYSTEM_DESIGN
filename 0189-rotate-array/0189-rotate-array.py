@@ -3,21 +3,32 @@ class Solution:
         """
         Do not return anything, modify nums in-place instead.
         """
-        # swap k items from end to start athen reverse ke items from right
+        # reverse both bifercstions
+        # reverse the whole array
+
         n = len(nums)
-        k = k % n
+        k = k % len(nums)
+        if k == 0 or k == len(nums):
+            return
 
-        def reverse(i, j):
-            while i < j:
-                nums[i], nums[j] = nums[j], nums[i]
-                i += 1
-                j -= 1
-
-        i = n - k
-        j = n - 1
-        reverse(i, j)
         i = 0
         j = n - k - 1
-        reverse(i, j)
+        while i < j:
+            nums[i], nums[j] = nums[j], nums[i]
+            i += 1
+            j -= 1
+
+        # print(nums)
+        i = n - k
         j = n - 1
-        reverse(i, j)
+        while i < j:
+            nums[i], nums[j] = nums[j], nums[i]
+            i += 1
+            j -= 1
+        # print(nums)
+        i = 0
+        j = n - 1
+        while i < j:
+            nums[i], nums[j] = nums[j], nums[i]
+            i += 1
+            j -= 1
