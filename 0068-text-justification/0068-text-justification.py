@@ -17,7 +17,7 @@ class Solution:
             if word_count + len(curr_line) + len(word) > maxWidth:
                 # Calculate spaces needed and distribute
                 spaces = maxWidth - word_count
-                gaps = len(curr_line) - 1 or 1  # Handle single word case
+                gaps = len(curr_line) - 1
 
                 # If multiple words, distribute spaces between them
                 if len(curr_line) > 1:
