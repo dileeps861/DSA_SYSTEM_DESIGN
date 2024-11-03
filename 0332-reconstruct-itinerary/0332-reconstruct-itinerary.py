@@ -106,15 +106,17 @@ class Solution:
         # return path
 
         # Most optimal Solution
-        # Build graph using heap for lexical order
+        # Build graph and sort airport codes. And take each node which is sortest
         graph = defaultdict(list)
         for src, dst in tickets:
-            heapq.heappush(graph[src], dst)
-        
+            graph[src].append(dst)
+        for src in graph.keys():
+            graph[src].sort()
+
         path = []
         def dfs(airport):
             while graph[airport]:
-                dfs(heapq.heappop(graph[airport]))
+                dfs(graph[airport].pop(0))
             path.append(airport)
         
         dfs("JFK")
