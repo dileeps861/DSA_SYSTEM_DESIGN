@@ -112,13 +112,13 @@ class Solution:
         for src, dst in tickets:
             graph[src].append(dst)
         for src in graph.keys():
-            graph[src].sort()
+            graph[src] = sorted(graph[src], reverse=True)
 
         path = []
 
         def dfs(airport):
             while graph[airport]:
-                dfs(graph[airport].pop(0))
+                dfs(graph[airport].pop(-1))
             path.append(airport)
 
         dfs("JFK")
