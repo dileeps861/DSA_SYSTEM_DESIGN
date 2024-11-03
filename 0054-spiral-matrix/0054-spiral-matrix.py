@@ -15,6 +15,8 @@ class Solution:
                 flattenedItems.append(matrix[idx][right - 1])
             right -= 1
 
+            # Case when ther is just left one row or one column then in that case we need to break
+            # To avoid considering same row and columns again
             if not left < right or not top < bottom:
                 break
             # Fill bottom row
