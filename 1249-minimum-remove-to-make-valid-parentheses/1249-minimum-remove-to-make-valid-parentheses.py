@@ -1,16 +1,21 @@
 class Solution:
     def minRemoveToMakeValid(self, s: str) -> str:
-        stack = []
-        toRemove = set()
-        for idx, char in enumerate(s):
-            if char == ')':
-                if not stack:
-                    toRemove.add(idx)
-                else:
-                    stack.pop()
-            elif char == '(':
-                stack.append(idx)
-        toRemove.update(stack)
+        setOfClosingBrackets = set()
+        stackOfOpeningBrackets = []
 
-        # Construct the result by skipping indices in toRemove
-        return ''.join(char for idx, char in enumerate(s) if idx not in toRemove)
+        for index, char in enumerate(s):
+            if char == "(":
+                stackOfOpeningBrackets.append(index)
+            elif char == ")":
+                if stackOfOpeningBrackets:
+                    stackOfOpeningBrackets.pop(-1)
+                else:
+                    setOfClosingBrackets.add(index)
+        res = ""
+        setOfOpeningBrackets = set(stackOfOpeningBrackets)
+        for index, char in enumerate(s):
+            if index in setOfClosingBrackets or index in setOfOpeningBrackets:
+                continue
+            else:
+                res += char
+        return res
