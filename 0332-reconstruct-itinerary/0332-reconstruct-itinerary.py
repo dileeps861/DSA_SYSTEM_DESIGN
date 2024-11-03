@@ -106,7 +106,8 @@ class Solution:
         # return path
 
         # Most optimal Solution
-        # Build graph and sort airport codes. And take each node which is sortest
+        # Build graph and sort airport codes. And take each node which is sortest,
+        # and if we popped we dont need to maintain visited
         graph = defaultdict(list)
         for src, dst in tickets:
             graph[src].append(dst)
@@ -114,10 +115,11 @@ class Solution:
             graph[src].sort()
 
         path = []
+
         def dfs(airport):
             while graph[airport]:
                 dfs(graph[airport].pop(0))
             path.append(airport)
-        
+
         dfs("JFK")
         return path[::-1]
