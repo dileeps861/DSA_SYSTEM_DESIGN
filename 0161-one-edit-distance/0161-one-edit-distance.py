@@ -15,7 +15,7 @@ class Solution:
         def dfs(i, j, isPassed):
             # Base cases
             if i >= m and j >= n:
-                return isPassed  # Bug #3: Should return isPassed instead of True
+                return True  # Bug #3: Should return isPassed instead of True
             
             if i >= m or j >= n:
                 return not isPassed and abs(m - n) == 1  # Bug #4: Logic was incorrect
