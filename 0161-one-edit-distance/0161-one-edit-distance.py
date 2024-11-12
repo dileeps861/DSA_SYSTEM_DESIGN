@@ -30,8 +30,6 @@ class Solution:
                 # Try replace
                 replace = dfs(i + 1, j + 1, True)
                 # Try insert/delete
-                insert = dfs(i, j + 1, True)
-                delete = dfs(i + 1, j, True)
-                return replace or insert or delete
+                return replace or dfs(i, j + 1, True) or dfs(i + 1, j, True)
 
         return dfs(0, 0, False)
