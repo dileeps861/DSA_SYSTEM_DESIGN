@@ -1,17 +1,23 @@
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-        res = []
         n = len(candidates)
-        def dfs(candidates, i, sum, lst):
-            if i >= n or sum > target:
+        res = set()
+
+        def dfs(i, lst, currSum):
+            if currSum == target:
+                res.add(tuple(lst[:]))
+
+            if currSum > target or i >= n:
                 return
-            for j in range(i, n):
-                lst.append(candidates[j])
-                total = sum + candidates[j]
-                if  total == target:
-                    res.append(lst[:])
-                dfs(candidates, j, total, lst)
-                lst.pop()
-        dfs(candidates, 0, 0, [])
-        return res
-            
+            if i == 0 or candidates[i - 1] != candidates[i]:
+                # take the curr num and repeat it
+                lst.append(candidates[i])
+                dfs(i, lst, currSum + candidates[i])
+                # take the curr num and dont repeat it
+                dfs(i + 1, lst, currSum + candidates[i])
+                lst.pop(-1)
+            # dont take the num
+            dfs(i + 1, lst, currSum)
+
+        dfs(0, [], 0)
+        return [val for val in res]
