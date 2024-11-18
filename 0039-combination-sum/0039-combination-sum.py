@@ -1,23 +1,24 @@
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         n = len(candidates)
-        res = set()
+        res = []
+        candidates.sort()
 
         def dfs(i, lst, currSum):
             if currSum == target:
-                res.add(tuple(lst[:]))
-
+                res.append(lst[:])
+                return
             if currSum > target or i >= n:
                 return
-            if i == 0 or candidates[i - 1] != candidates[i]:
-                # take the curr num and repeat it
-                lst.append(candidates[i])
-                dfs(i, lst, currSum + candidates[i])
-                # take the curr num and dont repeat it
-                dfs(i + 1, lst, currSum + candidates[i])
-                lst.pop(-1)
+            # Take current num
+            lst.append(candidates[i])
+            dfs(i, lst, currSum + candidates[i])
+            lst.pop(-1)  # backtracking the list
+            while i + 1 < n and candidates[i + 1] == candidates[i]:
+                # Skip the repeating nums to avoid duplicate combiantions
+                i += 1
             # dont take the num
             dfs(i + 1, lst, currSum)
 
         dfs(0, [], 0)
-        return [val for val in res]
+        return res
