@@ -1,20 +1,24 @@
 class Solution:
     def combinationSum2(self, candidates: List[int], target: int) -> List[List[int]]:
-        candidates.sort()
         n = len(candidates)
         res = []
-        def dfs(i, lst, sum):
-            if sum > target:
-                return
-            if sum == target:
+        candidates.sort()
+
+        def dfs(i, currSum, lst):
+            if currSum == target:
                 res.append(lst[:])
+                return
+            if currSum > target or i >= n:
+                return
 
-            for j in range(i, n):
-                if j > i and candidates[j] == candidates[j-1]:
-                    continue
-                lst.append(candidates[j])
-                dfs(j + 1, lst, sum + candidates[j])
-                lst.pop()
-        dfs(0, [], 0)
+            lst.append(candidates[i])
+            dfs(i + 1, currSum + candidates[i], lst)
+            lst.pop()
+
+            while i + 1 < n and candidates[i] == candidates[i + 1]:
+                i += 1
+            dfs(i + 1, currSum, lst)
+
+        dfs(0, 0, [])
+
         return res
-
