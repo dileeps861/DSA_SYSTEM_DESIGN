@@ -5,6 +5,7 @@ class Solution:
         # for each dfs loop run throuhg i to j and devide list in further half to create bst
         # whenever we reach currentnodes count, increase res by one
         # need to back track as well for curr node
+        # we need to cache if any sub list number of bst are alredy made (Use memoization)
 
         cache = {}
 
