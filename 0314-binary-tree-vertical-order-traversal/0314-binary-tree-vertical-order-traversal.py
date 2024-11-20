@@ -20,8 +20,7 @@ class Solution:
             # Add current node with its row number and index
             columns[col].append((row, idx, node.val))
 
-            # Use 2*idx + 1 for left child and 2*idx + 2 for right child
-            # This maintains consistent indexing throughout the tree
+            # Use idx to maintain left to right order
             dfs(node.left, col - 1, row + 1, idx)
             dfs(node.right, col + 1, row + 1, idx + 1)
 
