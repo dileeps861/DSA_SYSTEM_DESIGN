@@ -22,8 +22,8 @@ class Solution:
 
             # Use 2*idx + 1 for left child and 2*idx + 2 for right child
             # This maintains consistent indexing throughout the tree
-            dfs(node.left, col - 1, row + 1, idx + 1)
-            dfs(node.right, col + 1, row + 1, idx + 2)
+            dfs(node.left, col - 1, row + 1, idx)
+            dfs(node.right, col + 1, row + 1, idx + 1)
 
         # Perform DFS traversal
         dfs(root, 0, 0, 0)
