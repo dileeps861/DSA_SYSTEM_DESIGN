@@ -37,7 +37,9 @@ class Solution:
             # Sort by row first, then by index, then by value
             sorted_col = [
                 val
-                for row, idx, val in sorted(columns[col], key=lambda x: (x[0], x[1]))
+                for row, idx, val in sorted(
+                    columns[col], key=lambda x: (x[0], x[1])
+                )
             ]
             result.append(sorted_col)
 
