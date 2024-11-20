@@ -9,13 +9,10 @@ class Solution:
         for i in range(m):
             for j in range(n):
                 oneCount = 0
-                zerosCount = 0
                 for u, v in dirs:
                     # print(i, j, i+u, j+v)
                     if 0 <= u + i < m and 0 <= v + j < n:
-                        if board[u + i ][v + j] == 0 or board[u + i ][v + j] == 2:
-                            zerosCount += 1
-                        elif board[u + i ][v + j] == 1 or board[u + i ][v + j] == -1:
+                        if board[u + i][v + j] == 1 or board[u + i][v + j] == -1:
                             oneCount += 1
                 # print(i,j, zerosCount, oneCount)
                 if board[i][j] == 1 and oneCount > 3:
