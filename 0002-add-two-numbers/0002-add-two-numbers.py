@@ -11,22 +11,28 @@ class Solution:
             return l2
         if not l2:
             return l1
-        head = l1
+
         carry = 0
-        prev = None
+        head = None
+        node = None
         while l1 or l2:
-            if(l1 and l2):
-                total = l1.val + l2.val + carry
-                l1.val, carry = total % 10, total // 10
-                l1,l2,prev = l1.next, l2.next, l1
-            elif not l2:
-                total = l1.val + carry
-                l1.val, carry = total % 10, total // 10
-                l1, prev = l1.next, l1
+            sum = carry
+            temp = None
+            if l1:
+                sum += l1.val
+                temp = l1
+                l1 = l1.next
+            if l2:
+                sum += l2.val
+                temp = l2
+                l2 = l2.next
+            temp.val = sum % 10
+            carry = sum // 10
+            if not head:
+                head = temp
             else:
-                total = l2.val + carry
-                l2.val, carry = total % 10, total // 10
-                l2, prev.next,prev = l2.next,l2, l2
-        if carry:
-            prev.next = ListNode(carry)
+                node.next = temp
+            node = temp
+        if carry > 0:
+            node.next = ListNode(carry)
         return head
