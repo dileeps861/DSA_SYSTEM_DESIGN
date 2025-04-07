@@ -14,6 +14,4 @@ class Solution:
             # take or skip
             return dfs(i + 1, curr_sum + nums[i]) or dfs(i + 1, curr_sum)
 
-        # Use tuple to ensure immutability for caching
-        nums
         return dfs(0, 0)
