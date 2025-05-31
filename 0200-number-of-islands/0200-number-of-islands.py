@@ -16,9 +16,7 @@ class Solution:
                     find_connected_lands(new_i, new_j)
 
         for i in range(m):
-
             for j in range(n):
-
                 if grid[i][j] == "1":
                     # do something recusrively to find connected land
                     find_connected_lands(i, j)
