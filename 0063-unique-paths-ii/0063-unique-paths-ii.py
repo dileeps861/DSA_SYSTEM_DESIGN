@@ -9,6 +9,8 @@ class Solution:
             return 0 <= i < m and 0 <= j <n and obstacleGrid[i][j] == 0
 
         def dfs(i, j):
+            if not is_valid_move(i, j):
+                return 0
             if i == m-1 and j == n-1:
                 return 1
 
