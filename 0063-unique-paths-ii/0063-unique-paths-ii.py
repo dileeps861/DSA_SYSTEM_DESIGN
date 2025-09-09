@@ -12,16 +12,16 @@ class Solution:
             if i == m-1 and j == n-1:
                 return 1
             # obstacleGrid[i][j] = 1
-            if (str(i) +":"+str(j)) in memo:
-                return memo[(str(i) +":"+str(j))]
-            memo[(str(i) +":"+str(j))] = 0
+            if (i, j) in memo:
+                return memo[(i, j)]
+            memo[(i, j)] = 0
             for u, v in dirs:
                 new_i, new_j = i + u, j + v
                 if is_valid_move(new_i, new_j):
                     obstacleGrid[i][j] = 2
-                    memo[(str(i) +":"+str(j))] += dfs(new_i, new_j)
+                    memo[(i, j)] += dfs(new_i, new_j)
                     obstacleGrid[i][j] = 0
-            return memo[(str(i) +":"+str(j))] 
+            return memo[(i, j)] 
         if obstacleGrid[0][0] == 0:
             return dfs(0, 0)
         return 0
