@@ -18,9 +18,9 @@ class Solution:
             for u, v in dirs:
                 new_i, new_j = i + u, j + v
                 if is_valid_move(new_i, new_j):
-                    obstacleGrid[i][j] = 2
+                    # obstacleGrid[i][j] = 2
                     memo[(i, j)] += dfs(new_i, new_j)
-                    obstacleGrid[i][j] = 0
+                    # obstacleGrid[i][j] = 0
             return memo[(i, j)] 
         if obstacleGrid[0][0] == 0:
             return dfs(0, 0)
