@@ -1,21 +1,25 @@
 class Solution:
     def minRemoveToMakeValid(self, s: str) -> str:
-        setOfClosingBrackets = set()
-        stackOfOpeningBrackets = []
-
-        for index, char in enumerate(s):
-            if char == "(":
-                stackOfOpeningBrackets.append(index)
-            elif char == ")":
-                if stackOfOpeningBrackets:
-                    stackOfOpeningBrackets.pop(-1)
+        dict_map = {}
+        stack = []
+        for i in range(len(s)):
+            if s[i] == ")":
+                if stack:
+                    stack.pop(-1)
                 else:
-                    setOfClosingBrackets.add(index)
+                    dict_map[i] = True
+            elif s[i] == "(":
+                stack.append(i)
+
+        # build rest of the ( exclusion
+        for val in stack:
+            dict_map[val] = True
+
         res = ""
-        setOfOpeningBrackets = set(stackOfOpeningBrackets)
-        for index, char in enumerate(s):
-            if index in setOfClosingBrackets or index in setOfOpeningBrackets:
+
+        for i in range(len(s)):
+            if i in dict_map:
                 continue
             else:
-                res += char
+                res += s[i]
         return res
