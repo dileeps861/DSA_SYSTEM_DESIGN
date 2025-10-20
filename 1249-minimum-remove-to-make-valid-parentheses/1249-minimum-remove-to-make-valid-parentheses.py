@@ -1,19 +1,18 @@
 class Solution:
     def minRemoveToMakeValid(self, s: str) -> str:
-        dict_map = {}
+        dict_map = set()
         stack = []
         for i in range(len(s)):
             if s[i] == ")":
                 if stack:
                     stack.pop()
                 else:
-                    dict_map[i] = True
+                    dict_map.add(i)
             elif s[i] == "(":
                 stack.append(i)
 
         # build rest of the ( exck
-        for val in stack:
-            dict_map[val] = True
+        dict_map.update(stack)
 
         res = []
 
