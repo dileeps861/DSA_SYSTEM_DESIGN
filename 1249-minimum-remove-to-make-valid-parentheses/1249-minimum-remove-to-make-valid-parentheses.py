@@ -11,15 +11,15 @@ class Solution:
             elif s[i] == "(":
                 stack.append(i)
 
-        # build rest of the ( exclusion
+        # build rest of the ( exck
         for val in stack:
             dict_map[val] = True
 
-        res = ""
+        res = []
 
         for i in range(len(s)):
             if i in dict_map:
                 continue
             else:
-                res += s[i]
-        return res
+                res.append(s[i])
+        return ''.join(res)
