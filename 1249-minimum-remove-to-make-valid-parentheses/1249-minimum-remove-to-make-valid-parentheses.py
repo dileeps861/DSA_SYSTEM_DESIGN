@@ -15,11 +15,4 @@ class Solution:
         for val in stack:
             dict_map[val] = True
 
-        res = []
-
-        for i in range(len(s)):
-            if i in dict_map:
-                continue
-            else:
-                res.append(s[i])
-        return ''.join(res)
+        return ''.join(char for i, char in enumerate(s) if i not in dict_map)
