@@ -5,7 +5,7 @@ class Solution:
         for i in range(len(s)):
             if s[i] == ")":
                 if stack:
-                    stack.pop(-1)
+                    stack.pop()
                 else:
                     dict_map[i] = True
             elif s[i] == "(":
