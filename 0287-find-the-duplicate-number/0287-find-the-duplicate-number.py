@@ -9,5 +9,5 @@ class Solution:
                     return nums[i]
                 nums[i], nums[target] = nums[target], nums[i]  # swap into place
             
-        print(nums)
+        # print(nums)
         return nums[- 1]
