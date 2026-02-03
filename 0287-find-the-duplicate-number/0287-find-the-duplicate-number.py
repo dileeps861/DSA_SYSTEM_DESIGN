@@ -59,7 +59,7 @@ class Solution:
         slow = nums[0] # start from o i.e 1
         while slow != fast: # i.e fast can be 2 or 4 so lets find where we start to cross over, as mostly the cycle will of 2 numbers at the end so fast point should meet at the entry point
             slow = nums[slow]
-            
+            fast = nums[nums[fast]]
         
         return slow
 
