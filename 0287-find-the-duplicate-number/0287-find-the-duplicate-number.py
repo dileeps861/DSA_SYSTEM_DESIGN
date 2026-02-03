@@ -1,15 +1,15 @@
 class Solution:
     def findDuplicate(self, nums: List[int]) -> int:
-        for i in range(len(nums)):
-            num = nums[i]
-            while nums[i] != i + 1:
-                target = nums[i] - 1          # where nums[i] belongs
-                if nums[target] == nums[i]:   # duplicate found
-                    return nums[i]
-                nums[i], nums[target] = nums[target], nums[i]  # swap into place
+        # for i in range(len(nums)):
+        #     num = nums[i]
+        #     while nums[i] != i + 1:
+        #         target = nums[i] - 1          # where nums[i] belongs
+        #         if nums[target] == nums[i]:   # duplicate found
+        #             return nums[i]
+        #         nums[i], nums[target] = nums[target], nums[i]  # swap into place
 
-        # print(nums)
-        return nums[- 1]
+        # # print(nums)
+        # return nums[- 1]
 
         # for i in range(len(nums)):
         #     j = abs(nums[i]) - 1      # use abs in case nums[i] was already negated
@@ -59,7 +59,7 @@ class Solution:
         slow = nums[0] # start from o i.e 1
         while slow != fast: # i.e fast can be 2 or 4 so lets find where we start to cross over, as mostly the cycle will of 2 numbers at the end so fast point should meet at the entry point
             slow = nums[slow]
-            fast = nums[nums[fast]]
+            fast = nums[fast]
         
         return slow
 
